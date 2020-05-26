@@ -71,8 +71,6 @@ window.addEventListener('load', () => {
   
   let containerElem = document.getElementById('container');
   
-  let t = +new Date();
-  let noMouseTimeout = null;
   let oldTop = containerElem.scrollTop;
   let navElem = containerElem.querySelector('.nav');
   let anim = () => {
@@ -86,13 +84,6 @@ window.addEventListener('load', () => {
     if (viewT >= 500 && navElem.classList.contains('hidden')) navElem.classList.remove('hidden');
     
     navElem.style.top = `${viewB - 50}px`;
-    
-    if (oldTop !== viewT && (new Date() - t) > 5000) {
-      clearTimeout(noMouseTimeout);
-      style(containerElem, 'pointerEvents', 'none');
-      noMouseTimeout = setTimeout(() => style(containerElem, 'pointerEvents', ''), 100);
-      oldTop = viewT;
-    }
     
     requestAnimationFrame(anim);
   };
