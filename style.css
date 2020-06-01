@@ -33,6 +33,7 @@ a.link {
   background-size: cover;
   background-image: url('assets/img/texture3.jpg');
   opacity: 0.45;
+  pointer-events: none;
   z-index: 0;
 }
 
@@ -193,6 +194,11 @@ a.link {
   margin-bottom: 60px;
   text-align: center;
 }
+#container > .section > h1 {
+  position: relative;
+  height: 120px; line-height: 120px; font-size: 250%;
+  z-index: 1;
+}
 
 /* 3d books */
 #container > .section > .book {
@@ -200,73 +206,127 @@ a.link {
   width: 100%; height: 450px;
   perspective: 33cm;
   perspective-origin: 50% 74%;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   z-index: 0;
 }
-#container > .section > .book:hover {
-  z-index: 1;
-}
+#container > .section > .book:hover { z-index: 1; }
 #container > .section > .book > .bookElem {
   left: 50%; top: 0; margin-left: -150px;
   position: absolute;
   width: 300px;
   height: 450px;
   transform-origin: 0% 50%;
-  transition: margin-left 1000ms ease-in-out, transform 1000ms ease-in-out;
+  transition: left 800ms ease-in-out, transform 800ms ease-in-out;
   pointer-events: none;
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.4);
 }
-#container > .section > .book:hover > .bookElem { margin-left: 0; }
-#container > .section > .book > .cover { z-index: 3; backface-visibility: hidden; }
+#container > .section > .book:hover > .bookElem { left: 43%; }
+#container > .section > .book > .cover { z-index: 3; background-size: cover; backface-visibility: hidden; }
 #container > .section > .book > .page1 { z-index: 2; backface-visibility: hidden; }
 #container > .section > .book > .page2 { z-index: 1; }
 
 #container > .section > .book > .cover { transform: rotate3d(0, 1, 0, 0); }
-#container > .section > .book:hover > .cover { transform: rotate3d(0, 1, 0, -0.45turn); }
+#container > .section > .book:hover > .cover { transform: rotate3d(0, 1, 0, -0.45turn) scale(0.85); }
 
 #container > .section > .book > .page1 { transform: rotate3d(0, 1, 0, 0) rotate3d(1, 0, 0, 0.5turn); }
-#container > .section > .book:hover > .page1 { transform: rotate3d(0, 1, 0, -0.45turn) rotate3d(1, 0, 0, 0.5turn); }
+#container > .section > .book:hover > .page1 { transform: rotate3d(0, 1, 0, -0.45turn) rotate3d(1, 0, 0, 0.5turn) scale(0.85); }
 
 #container > .section > .book > .page2 { transform: rotate3d(0, 1, 0, 0); }
-#container > .section > .book:hover > .page2 { transform: rotate3d(0, 1, 0, -0.05turn); }
+#container > .section > .book:hover > .page2 { transform: rotate3d(0, 1, 0, -0.05turn) scale(0.85); }
 
 #container > .section > .book > .page1 > .content {
   position: absolute;
   width: 100%; height: 100%; left: 0; top: 0;
-  padding: 10px; box-sizing: border-box;
   transform: rotate(180deg);
+  color: rgba(0, 0, 0, 0);
 }
 
-#container > .section > .book > .page1,
-#container > .section > .book > .page2 {
-  background-color: #ffffff;
-  box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.2);
+#container > .section > .book > .page {
+  background-color: #fff7e8;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
   color: #000000;
 }
+#container > .section > .book > .page > .content {
+  padding: 10px; box-sizing: border-box;
+}
+#container > .section > .book > .page > .content > .title {
+  position: absolute;
+  width: 100%; height: 40px; line-height: 40px;
+  left: 0; top: 50%;
+  margin-top: -40px;
+  font-size: 40px;
+}
+#container > .section > .book > .page > .content > .credit {
+  position: absolute;
+  width: 100%; height: 20px; line-height: 20px;
+  left: 0; top: 50%;
+  margin-top: 10px;
+  font-size: 14px;
+}
+#container > .section > .book > .page2 {
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: left;
+  font-size: 120%;
+  font-family: serif;
+  line-height: 135%;
+}
 
-#container > .section > .book.dead-mans-float > .cover {
-  background-image: url('assets/img/dead-mans-float.jpg');
-  background-size: cover;
-}
-#container > .section > .book.crescent-star > .cover {
-  background-image: url('assets/img/crescent-star.jpg');
-  background-size: cover;
-}
-
-#container > .section > .book > .data {
-  white-space: initial;
-  max-width: calc(100% - 300px);
-}
-#container > .section > .book > .data > .title {
+#container > .section > .book > .page1 > .content::before {
+  content: '';
+  display: block;
+  position: absolute;
   width: 100%;
-  padding: 7px 0;
-  margin-bottom: 8px;
-  background-color: rgba(255, 255, 255, 0.2);
-  font-size: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  filter: opacity(0.3) grayscale(0.5) sepia(83%);
 }
-#container > .section > .book > .data > .blurb {
-  padding: 0 8px;
-  font-size: 75%;
+
+.book.dead-mans-float > .cover,
+.book.dead-mans-float > .page1 > .content::before { background-image: url('assets/img/dead-mans-float.jpg'); }
+
+.book.crescent-star > .cover,
+.book.crescent-star > .page1 > .content::before { background-image: url('assets/img/crescent-star.jpg'); }
+
+.book.locksmith > .cover,
+.book.locksmith > .page1 > .content::before { background-image: url('assets/img/locksmith.jpg'); }
+
+.book.laughing-wolf > .cover,
+.book.laughing-wolf > .page1 > .content::before { background-image: url('assets/img/laughing-wolf.jpg'); }
+
+.book.transmigration > .cover,
+.book.transmigration > .page1 > .content::before { background-image: url('assets/img/transmigration.jpg'); }
+
+.book.fortuna > .cover,
+.book.fortuna > .page1 > .content::before { background-image: url('assets/img/fortuna.jpg'); }
+
+.book.robertson-davies > .cover,
+.book.robertson-davies > .page1 > .content::before { background-image: url('assets/img/robertson-davies.jpg'); }
+
+#container > .section > .book > .praise {
+  position: absolute;
+  display: flex; flex-direction: column; justify-content: center;
+  width: 40%; height: 100%;
+  left: 30%; top: 0;
+  color: rgba(255, 255, 255, 0);
+  transition: color 1000ms ease-in-out, left 1000ms ease-in-out;
+  font-family: serif;
+  text-align: left;
 }
+#container > .section > .book:hover > .praise {
+  left: 60%;
+  color: rgba(255, 255, 255, 1);
+}
+#container > .section > .book > .praise > h1 { margin-top: -30px; font-size: 160%; }
+#container > .section > .book > .praise > .quote {
+  margin-top: 20px;
+}
+
+.quote > .text { font-style: italic; margin-bottom: 4px; }
+.quote > .text::before { content: '\201C'; }
+.quote > .text::after { content: '\201D'; }
+.quote > .source::before { content: '- '; }
 
 #container > .section:last-child {
   margin-bottom: 100px;
@@ -284,11 +344,15 @@ a.link {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  transition: margin-top 750ms ease-in-out;
   font-size: 0;
   box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0.35);
+  
+  transition: margin-top 750ms ease-in-out, box-shadow 750ms ease-in-out;
 }
-#container > .nav.hidden { margin-top: 50px; }
+#container > .nav.hidden {
+  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0);
+  margin-top: 50px;
+}
 
 #container > .nav > .section.icon {
   position: absolute;
@@ -319,7 +383,7 @@ a.link {
   left: 0; top: 0;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   
   #container > .main > .content {
     position: absolute;
