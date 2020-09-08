@@ -1,4 +1,4 @@
 # nmb
 Nicholas Maes Books
 
-Live at nicholasmaes.com/
+Live at <a href="nicholasmaes.com">nicholasmaes.com</a>
