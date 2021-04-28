@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
     { ind: '09', elem: null, calcW: null, size:  60, top: 16, text: 'Even as he trembled slightly, Simon did feel sorry for this stranger. He glanced up and down the shelves, desperate to help the poor guy out. Slowly a realization dawned: no one else noticed the shouting. The staff and customers weren\'t batting an eye, as if it were normal for someone to be shrieking like that.' },
     { ind: '10', elem: null, calcW: null, size:  41, top: 88, text: '"It ain\'t no trick!" the voice continued. The rabbit had its paws against the lid, in what seemed to be a show of desperation. "But you ain\'t answered me! How come you can hear me? Who de hell are you?"' },
     { ind: '11', elem: null, calcW: null, size:  88, top: 79, text: '"You were probably dreaming," he told himself as he and Ian started running down the sidewalk... But it was no dream. Either that rabbit had spoken or, like Winston said, he was totally nuts.' },
-    { ind: '12', elem: null, calcW: null, size:  85, top: 21, text: '"There was an incident by the wall," Dror spoke. A muscular guy, he was dressed in jeans and a t-shirt stamped with the smiling image of Bob Marley. He was warm and friendly and spoke with self-assurance, as if he knew better than everyone else – a typical Israeli. "They say a couple of shots were fired."' },
+    { ind: '12', elem: null, calcW: null, size:  85, top: 21, text: '"There was an incident by the wall," Dror spoke. A muscular guy, he was dressed in jeans and a t-shirt stamped with the smiling image of Bob Marley. He was warm and friendly and spoke with self-assurance, as if he knew better than everyone else - a typical Israeli. "They say a couple of shots were fired."' },
     { ind: '13', elem: null, calcW: null, size:  23, top: 67, text: '"Honoured passengers," a voice broke in, "InterCity Services is pleased to inform you that Global President Siegfried Angstrom will be addressing the world in precisely five minutes. Please stay tuned for this important broadcast."' },
     { ind: '14', elem: null, calcW: null, size:  96, top:  4, text: 'As abruptly as it had failed, the power returned. The engine was humming, the lights flicked on and the craft swiftly straightened itself. Every screen was back online and a voice was explaining that the ship was fine and InterCity Services regretted the outage.' },
     { ind: '15', elem: null, calcW: null, size:  29, top: 24, text: 'Does anyone know I\'m floating in a pool? In the neurology textbooks the doctors consult, is it mentioned that memories can be turned to water? It would comfort Sue greatly if she knew my situation, and Pete might suppress that constipated look.' }
@@ -72,7 +72,10 @@ window.addEventListener('load', () => {
   let containerElem = document.getElementById('container');
   
   let oldTop = containerElem.scrollTop;
-  let navElem = containerElem.querySelector('.nav');
+  let navElem = document.body.querySelector('#nav > .inner');
+  
+  console.log(navElem);
+  
   let anim = () => {
     let { width, height } = containerElem.getBoundingClientRect();
     let viewT = containerElem.scrollTop;
@@ -82,8 +85,6 @@ window.addEventListener('load', () => {
     
     if (viewT < 500 && !navElem.classList.contains('hidden')) navElem.classList.add('hidden');
     if (viewT >= 500 && navElem.classList.contains('hidden')) navElem.classList.remove('hidden');
-    
-    navElem.style.top = `${viewB - 50}px`;
     
     requestAnimationFrame(anim);
   };

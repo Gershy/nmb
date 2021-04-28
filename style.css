@@ -48,7 +48,7 @@ a.link {
 .colour-ya:hover, .colour-ya-txt:hover { color: #ffff00; }
 
 .colour-nf, .colour-nf-bg { background-color: rgba(255, 0, 255, 0.2); }
-.colour-nf, .colour-nf-txt { color: #d818d8; }
+.colour-nf, .colour-nf-txt { color: #d818d8; font-weight: bold; }
 .colour-nf:hover, .colour-nf-bg:hover { background-color: rgba(255, 0, 255, 0.32); }
 .colour-nf:hover, .colour-nf-txt:hover { color: #ff00ff; }
 
@@ -56,6 +56,69 @@ a.link {
 .colour-bio, .colour-bio-txt { color: #c8c8c8; }
 .colour-bio:hover, .colour-bio-bg:hover { background-color: rgba(255, 255, 255, 0.27); }
 .colour-bio:hover, .colour-bio-txt:hover { color: #ffffff; }
+
+#nav {
+  position: fixed;
+  width: 100%; height: 200px;
+  left: 100px; bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  pointer-events: none;
+  z-index: 2
+}
+#nav > .inner {
+  position: absolute;
+  width: 70%; height: 50px; left: 15%; margin-left: -100px;
+  bottom: 0;
+  pointer-events: all;
+  
+  background-color: #202020;
+  z-index: 3;
+  padding-left: 50px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+  font-family: sans-serif;
+  text-align: center;
+  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0.25);
+  transition: bottom 750ms ease-in-out, box-shadow 750ms ease-in-out;
+}
+#nav > .inner.hidden {
+  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0);
+  bottom: -100px;
+}
+
+#nav > .inner > .section.icon {
+  position: absolute;
+  left: 0; top: 0;
+  width: 50px; height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 6px #ffffff;
+  transition: background-color 200ms linear, color 200ms linear;
+}
+#nav > .inner > .icon > .text {
+  width: 50px; height: 50px; line-height: 50px;
+}
+#nav > .inner > .section.icon:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+#nav > .inner > .section {
+  position: relative;
+  display: inline-block;
+  width: 25%; height: 50px;
+  font-size: 16px;
+}
+#nav > .inner > .section > .text {
+  position: absolute;
+  width: 100%; height: 50px; line-height: 50px;
+  left: 0; top: 0;
+  font-size: 20px;
+}
+
 
 #text-streams {
   position: fixed; width: 100%; height: 100%; left: 0; top: 0;
@@ -77,6 +140,7 @@ a.link {
   overflow-x: hidden;
   overflow-y: auto;
   font-family: sans-serif;
+  z-index: 1;
 }
 #container > .main {
   display: block;
@@ -89,6 +153,7 @@ a.link {
   width: 82%; height: 82%;
   left: 9%; top: 9%;
   box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 #container > .main > .content > .branding {
   position: relative;
@@ -146,7 +211,7 @@ a.link {
   background-size: contain;
   background-position: 50% 60%;
   background-repeat: no-repeat;
-  width: 90%; left: 5%; height: 100%;
+  width: 90%; left: 5%; height: 100%; top: 0;
 }
 #container > .main > .content > .nav > .ya > .img {
   background-image: url('assets/img/swords.png');
@@ -160,11 +225,6 @@ a.link {
 #container > .main > .content > .nav > .adult { left: 4%; }
 #container > .main > .content > .nav > .ya { left: 36%; }
 #container > .main > .content > .nav > .nf { left: 68%; }
-
-#container > .main > .content > .nav > .adult > .img {}
-#container > .main > .content > .nav > .adult > .img > img {
-  margin-bottom: -80%;
-}
 
 #container > .main > .content > .nav > .nf > .img {
   display: flex; flex-direction: column; justify-content: center;
@@ -369,57 +429,6 @@ a.link {
   margin-bottom: 100px;
 }
 
-#container > .nav {
-  position: absolute;
-  background-color: #202020;
-  z-index: 3;
-  width: 70%; height: 50px;
-  padding-left: 50px;
-  left: 15%;
-  margin: 0; margin-top: 0;
-  box-sizing: border-box;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 0;
-  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0.35);
-  
-  transition: margin-top 750ms ease-in-out, box-shadow 750ms ease-in-out;
-}
-#container > .nav.hidden {
-  box-shadow: 0 0 20px 7px rgba(255, 255, 255, 0);
-  margin-top: 50px;
-}
-
-#container > .nav > .section.icon {
-  position: absolute;
-  left: 0; top: 0;
-  width: 50px; height: 50px;
-  font-weight: bold;
-  font-size: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
-  text-shadow: 0 0 6px #ffffff;
-  transition: background-color 200ms linear, color 200ms linear;
-}
-#container > .nav > .icon > .text {
-  width: 50px; height: 50px; line-height: 50px;
-}
-#container > .nav > .section.icon:hover {
-  background-color: #ffffff;
-  color: #000000;
-}
-#container > .nav > .section {
-  position: relative;
-  display: inline-block;
-  width: 25%; height: 50px;
-  font-size: 16px;
-}
-#container > .nav > .section > .text {
-  position: absolute;
-  width: 100%; height: 50px; line-height: 50px;
-  left: 0; top: 0;
-}
-
 #container > .section.the-author { font-size: 120%; }
 #container > .section.the-author > .qa {
   max-width: 800px;
@@ -447,7 +456,8 @@ a.link {
   }
   #container > .main { margin-bottom: 14px; }
   
-  #container > .nav { width: 100%; left: 0; }
+  #nav { left: 0; overflow-y: hidden; }
+  #nav > .inner { width: 100%; left: 0; margin-left: 0; }
   
   #container > .section {
     width: calc(100% - 28px);
@@ -456,4 +466,21 @@ a.link {
   
   #container > .section:last-child { margin-bottom: 62px; }
   
+}
+
+@media screen and (min-width: 1200px) {
+  
+  #container > .main > .content > .nav > .adult > .img {
+    height: 150%; top: 25%;
+    background-position: center top;
+  }
+  
+  #container > .section > .book > .praise {
+    left: 58%;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 300ms ease-in-out, left 1000ms ease-in-out, transform 1000ms ease-in-out;
+    transform: scale(0.95);
+  }
+  #container > .section > .book:hover > .praise { transform: scale(1); }
+  #container > .section > .book > .bookElem { left: 30%; }
 }
